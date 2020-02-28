@@ -4,15 +4,10 @@ Date Started: 2-7-2020 (v0.1)
 Version 1.0 completed on: 2-26-2020  
 
 ### Description
-This script is used for calling other files / functions  
-to ease the proccess of setting up new devices after  
-installing Windows 10, imaging new systems, setting   
-up a new device in the field, and cleaning up older PCs.  
+This script is used for calling other files / functions to ease the proccess of setting up new devices after installing Windows 10, imaging new systems, setting up a new device in the field, and cleaning up older PCs.  
 
 ### Why CLU?
-It is a name taken from the Tron films, the character CLU   
-was designed to create the perfect system, as is this program :smirk:  
-Name also inspired by tronscript ( https://github.com/bmrf/tron )  
+It is a name taken from the Tron films, the character CLU was designed to create the perfect system, as is this program :smirk: Name also inspired by tronscript ( https://github.com/bmrf/tron )  
 Quote from Tron Legacy:  
 &nbsp;&nbsp;&nbsp;&nbsp; Kevin Flynn: You are CLU.  
 &nbsp;&nbsp;&nbsp;&nbsp; CLU: I am CLU.  
@@ -40,7 +35,4 @@ $ CLU.bat
 ```
 
 ### WARNING!!!
-Be sure to read the batch files before running and make sure  
-that all varables listed above are changed to your needs. This is  
-designed for my own use and has not been tested on a wide variety  
-of machines. As always, use caution when running scripts found online!
+Be sure to read the batch files before running and make sure that all varables listed above are changed to your needs. This is designed for my own use and has not been tested on a wide variety of machines. As always, use caution when running scripts found online!
