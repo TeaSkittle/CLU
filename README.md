@@ -26,7 +26,7 @@ Near the top of the file are varaibles the user should change for the proper aut
 * apps[]  - Install/run files downloaded from down[]
 * step    - Size of array ( used for looping through array )
 
-#### Download and run (as admin):
+#### Download and run ( as admin ):
 ```
 $ git clone https://github.com/TeaSkittle/CLU.git
 $ cd CL*
