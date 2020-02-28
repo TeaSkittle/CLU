@@ -11,7 +11,7 @@ up a new device in the field, and cleaning up older PCs.
 
 ### Why CLU?
 It is a name taken from the Tron films, the character CLU   
-was designed to create the perfect system, as is this program :)  
+was designed to create the perfect system, as is this program :smirk:  
 Name also inspired by tronscript ( https://github.com/bmrf/tron )  
 Quote from Tron Legacy:  
 &nbsp;&nbsp;&nbsp;&nbsp; Kevin Flynn: You are CLU.  
