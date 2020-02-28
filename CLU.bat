@@ -12,9 +12,6 @@
 ::   - Write header to log file
 ::   - Check for admin rights
 :: ==================================================================================
-::
-:: Global Variables
-::
 @ECHO OFF
 CLS
 SETLOCAL EnableDelayedExpansion
