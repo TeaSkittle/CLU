@@ -141,9 +141,9 @@ EXIT /B 0
 :network
 SET /p ip="Enter new IP address[ %defip% ]: "
 SET /p sub="Enter Subnet Mask[ %defsub% ]: "
-IF "%sub%"=="" (set sub=255.255.255.0)
+IF "%sub%"=="" (set sub=%defsub%)
 SET /p gate="Enter Default Gateway[ %defgate% ]: "
-IF "%gate%=="" (set gate=192.168.9.1)
+IF "%gate%=="" (set gate=%defgate%)
 SET adapterName=
 FOR /F "tokens=* delims=:" %%a IN ('IPCONFIG ^| FIND /I "ETHERNET ADAPTER"') DO (
 	SET adapterName=%%a
