@@ -19,3 +19,28 @@ Quote from Tron Legacy:
 &nbsp;&nbsp;&nbsp;&nbsp; Kevin Flynn: You will create the perfect system.  
 &nbsp;&nbsp;&nbsp;&nbsp; CLU: I will create the perfect system.  
 &nbsp;&nbsp;&nbsp;&nbsp; Kevin Flynn: [embracing CLU] Together we're going to change the world, man.  
+
+### Instructions
+Near the top of the file are varaibles the user should change for the proper automation:
+* defip   - default IP address ( this is just for display, not an actuall addres s)
+* defsub  - desfault subnet address
+* defgate - default gateway
+* defdns  - default dns ( this is set to google's 8.8.8.8 )
+* deftime - Default timezone ( used to force windows updates )
+* dest    - Destination folder for downlods and logs
+* down[]  - Array of URL's for file to be downloaded
+* apps[]  - Install/run files donwloaded from down[]
+* step    - Size of array ( used for looping through array )
+
+#### Download and run (as admin):
+```
+$ git cloone https://github.com/TeaSkittle/CLU.git
+$ cd CLU
+CLU.bat
+```
+
+### Warning
+Be sure to read the batch files before running and make sure  
+that all varables listed above are changed to your needs. This is  
+designed for my own use and has not been tested opn a wide variety  
+of machines. As always, use caution when running scripts found online!
