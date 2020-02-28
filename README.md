@@ -1,5 +1,4 @@
 # CLU
-Author - Travis Dowd  
 Date Started: 2-7-2020 (v0.1)  
 Version 1.0 completed on: 2-26-2020  
 
