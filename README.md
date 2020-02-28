@@ -23,7 +23,7 @@ Near the top of the file are varaibles the user should change for the proper aut
 * deftime - Default timezone ( used to force windows updates )
 * dest    - Destination folder for downlods and logs
 * down[]  - Array of URL's for file to be downloaded
-* apps[]  - Install/run files donwloaded from down[]
+* apps[]  - Install/run files downloaded from down[]
 * step    - Size of array ( used for looping through array )
 
 #### Download and run (as admin):
