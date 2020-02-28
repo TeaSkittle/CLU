@@ -36,7 +36,7 @@ Near the top of the file are varaibles the user should change for the proper aut
 ```
 $ git cloone https://github.com/TeaSkittle/CLU.git
 $ cd CLU
-CLU.bat
+$ CLU.bat
 ```
 
 ### Warning
