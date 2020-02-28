@@ -28,7 +28,7 @@ Near the top of the file are varaibles the user should change for the proper aut
 
 #### Download and run (as admin):
 ```
-$ git cloone https://github.com/TeaSkittle/CLU.git
+$ git clone https://github.com/TeaSkittle/CLU.git
 $ cd CLU
 $ CLU.bat
 ```
