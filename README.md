@@ -16,7 +16,7 @@ Quote from Tron Legacy:
 
 ### Instructions
 Near the top of the file are varaibles the user should change for the proper automation:
-* defip   - default IP address ( this is just for display, not an actuall addres s)
+* defip   - default IP address ( this is just for display, not an actual address )
 * defsub  - desfault subnet address
 * defgate - default gateway
 * defdns  - default dns ( this is set to google's 8.8.8.8 )
