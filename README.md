@@ -39,8 +39,8 @@ $ cd CLU
 $ CLU.bat
 ```
 
-### Warning!
+### WARNING!!!
 Be sure to read the batch files before running and make sure  
 that all varables listed above are changed to your needs. This is  
-designed for my own use and has not been tested opn a wide variety  
+designed for my own use and has not been tested on a wide variety  
 of machines. As always, use caution when running scripts found online!
