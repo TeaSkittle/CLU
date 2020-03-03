@@ -21,7 +21,7 @@ Near the top of CLU.bat are variables that the user should change for the proper
 * defgate - default gateway
 * defdns  - default dns ( this is set to google's 8.8.8.8 )
 * deftime - Default timezone ( used to force windows updates )
-* dest    - Destination folder for downlods and logs
+* dest    - Destination folder for downloads and logs
 * down[]  - Array of URL's for file to be downloaded
 * apps[]  - Install/run files downloaded from down[]
 * step    - Size of array ( used for looping through array )
