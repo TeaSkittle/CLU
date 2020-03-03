@@ -29,7 +29,7 @@ Near the top of CLU.bat are varaibles the user should change for the proper auto
 #### Download and run ( as admin ):
 ```
 $ git clone https://github.com/TeaSkittle/CLU.git
-$ cd CL*
+$ cd CLU
 $ CLU.bat
 ```
 
