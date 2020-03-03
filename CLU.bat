@@ -62,26 +62,25 @@ ECHO *        1.  Restart device                                   *
 ECHO *                                                             *
 ECHO *  Setup:                                                     *
 ECHO *        2.  Force WSUS Updates                               *
-ECHO *        3.  Change computer's name                           *
+ECHO *        3.  Change device's name                             *
 ECHO *        4.  Download files                                   *
-ECHO *        5.  Install apps in C:\1                             *
+ECHO *        5.  Install apps                                     *
 ECHO *        6.  Remove items pinned to taskbar                   *
 ECHO *                                                             *
 ECHO *  Network Settings:                                          *
-ECHO *        7.  Change IP, Subnet, Gateway                       *
-ECHO *        8.  Change DNS settings                              *
-ECHO *        9.  Test network connection                          *
+ECHO *        7.  Change IP, Subnet, Gateway, and DNS              *
+ECHO *        8.  Test network connection                          *
 ECHO *                                                             *
 ECHO *  Diagnostics:                                               *
-ECHO *        10. Check disk for errors                            *
-ECHO *        11. Delete temp files                                *
-ECHO *        12. Defrag C: drive                                  *
-ECHO *        13. Display system info                              *
-ECHO *        14. View runnings tasks                              *
+ECHO *        9.  Check disk for errors                            *
+ECHO *        10. Delete temp files                                *
+ECHO *        11. Defrag C: drive                                  *
+ECHO *        12. Display system info                              *
+ECHO *        13. View runnings tasks                              *
 ECHO *                                                             *
 ECHO *  Notes/Logs:                                                *
-ECHO *        15. Open log file                                    *
-ECHO *        16. Delete Log(s)                                    *
+ECHO *        14. Open log file                                    *
+ECHO *        15. Delete Log(s)                                    *
 ECHO *                                                             *
 ECHO ***************************************************************
 ECHO.
@@ -94,15 +93,14 @@ IF %option%==4  CALL :download                    || CALL :tee [-]File download 
 IF %option%==5  CALL :install                     || CALL :tee [-]install of apps failed
 IF %option%==6  CALL :taskbar                     || CALL :tee [-]taskbar failed to clear
 IF %option%==7  CALL :network                     || CALL :tee [-]Failed changing network config
-IF %option%==8  CALL :dns                         || CALL :tee [-]DNS change settings failed
-IF %option%==9  CALL :test                        || CALL :tee [-]Network test failed
-IF %option%==10 CALL :check                       || CALL :tee [-]check disk failed
-IF %option%==11 DEL /F /S /Q %temp%               || CALL :tee [-]Failed to deleted temp files
-IF %option%==12 DEFRAG C: /U /V                   || CALL :tee [-]defrag C: error
-IF %option%==13 SYSTEMINFO                        || CALL :tee [-]systeminfo error
-IF %option%==14 TASKLIST | MORE                   || CALL :tee [-]tasklist error
-IF %option%==15 NOTEPAD %log%                     || CALL :tee [-]Failed loading log
-IF %option%==16 DEL %log%                         && ECHO Deleting log file...
+IF %option%==8  CALL :test                        || CALL :tee [-]Network test failed
+IF %option%==9  CALL :check                       || CALL :tee [-]check disk failed
+IF %option%==10 DEL /F /S /Q %temp%               || CALL :tee [-]Failed to deleted temp files
+IF %option%==11 DEFRAG C: /U /V                   || CALL :tee [-]defrag C: error
+IF %option%==12 SYSTEMINFO                        || CALL :tee [-]systeminfo error
+IF %option%==13 TASKLIST | MORE                   || CALL :tee [-]tasklist error
+IF %option%==14 NOTEPAD %log%                     || CALL :tee [-]Failed loading log
+IF %option%==15 DEL %log%                         && ECHO Deleting log file...
 COLOR 0A
 ECHO ***************************************
 ECHO *               COMPLETE              *
@@ -139,28 +137,18 @@ SFC /SCANNOW              || CALL :tee [-]SFC Error
 DEFRAG C: /A /V           || CALL :tee [-]DEFRAG /A Error
 EXIT /B 0
 :network
-SET /p ip="Enter new IP address[ %defip% ]: "
-SET /p sub="Enter Subnet Mask[ %defsub% ]: "
-IF "%sub%"=="" (set sub=%defsub%)
-SET /p gate="Enter Default Gateway[ %defgate% ]: "
-IF "%gate%=="" (set gate=%defgate%)
+SET /P ip="IP address[ %defip% ]: "
+SET /P sub="Subnet Mask[ %defsub% ]: "
+SET /P gate="Default Gateway[ %defgate% ]: "
+SET /P dns="DNS[ %defdns% ]: "
 SET adapterName=
 FOR /F "tokens=* delims=:" %%a IN ('IPCONFIG ^| FIND /I "ETHERNET ADAPTER"') DO (
 	SET adapterName=%%a
 	SET adapterName=!adapterName:~17!
 	SET adapterName=!adapterName:~0,-1!
 	netsh interface ipv4 set address name=!adapterName! static %ip% %sub% %gate%
-) || CALL :tee [-]Network settings could not be assigned
-EXIT /B 0
-:dns
-SET adapterName=
-FOR /F "tokens=* delims=:" %%a IN ('IPCONFIG ^| FIND /I "ETHERNET ADAPTER"') DO (
-	SET adapterName=%%a
-	SET adapterName=!adapterName:~17!
-	SET adapterName=!adapterName:~0,-1!
 	netsh interface ipv4 set dns name="!adapterName!" static %defdns% primary
-) || CALL :tee [-]DNS settings could not be changed
-nslookup %defdns%
+) || CALL :tee [-]Network settings could not be assigned
 EXIT /B 0
 :test
 nslookup 192.168.10.5  || CALL :tee [-]nslookup failed
