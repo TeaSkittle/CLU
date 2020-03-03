@@ -15,7 +15,7 @@ Quote from Tron Legacy:
 &nbsp;&nbsp;&nbsp;&nbsp; Kevin Flynn: [embracing CLU] Together we're going to change the world, man.  
 
 ### Instructions
-Near the top CLU.bat are varaibles the user should change for the proper automation:
+Near the top of CLU.bat are varaibles the user should change for the proper automation:
 * defip   - default IP address ( this is just for display, not an actual address )
 * defsub  - default subnet mask
 * defgate - default gateway
