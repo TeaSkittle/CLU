@@ -157,7 +157,7 @@ tracert www.google.com || CALL :tee [-]tracert www.google.com failed
 EXIT /B 0
 :update
 CONTROL UPDATE
-IPCONFIG /FLUSHDNS || CALL :tee "[-]flushdns failed"
+IPCONFIG /FLUSHDNS                     || CALL :tee "[-]flushdns failed"
 NET STOP wuauserv                      || CALL :tee [-]wuauserv net stop failed
 REG DELETE "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate" /v SusClientId /f
 WUAUCLT /resetauthorization /detectnow || CALL :tee [-]wuauclt.exe failure
