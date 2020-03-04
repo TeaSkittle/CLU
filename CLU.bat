@@ -146,8 +146,8 @@ FOR /F "tokens=* delims=:" %%a IN ('IPCONFIG ^| FIND /I "ETHERNET ADAPTER"') DO 
 	SET adapterName=%%a
 	SET adapterName=!adapterName:~17!
 	SET adapterName=!adapterName:~0,-1!
-	netsh interface ipv4 set address name=!adapterName! static %ip% %sub% %gate%
-	netsh interface ipv4 set dns name="!adapterName!" static %defdns% primary
+	netsh interface ipv4 set address name="!adapterName!" static %ip% %sub% %gate%
+	netsh interface ipv4 set dns     name="!adapterName!" static %defdns% primary
 ) || CALL :tee [-]Network settings could not be assigned
 EXIT /B 0
 :test
