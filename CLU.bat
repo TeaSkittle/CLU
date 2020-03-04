@@ -29,7 +29,7 @@ SET apps[2]=%dest%emacs-26.3-x86_64.zip
 :: Variables not to be changed
 ::
 COLOR 0F
-SET ver=1.4
+SET ver=1.3
 TITLE CLU - %ver%
 SET log=%dest%CLU_log.txt
 IF NOT EXIST %dest% MD %dest%
@@ -139,15 +139,18 @@ EXIT /B 0
 :network
 SET /P ip="IP address[ %defip% ]: "
 SET /P sub="Subnet Mask[ %defsub% ]: "
+IF "%sub%"=="" (set sub=%defsub%)
 SET /P gate="Default Gateway[ %defgate% ]: "
+IF "%gate%"=="" (set gate=%defgate%)
 SET /P dns="DNS[ %defdns% ]: "
+IF "%dns%"=="" (set dns=%defdns%)
 SET adapterName=
 FOR /F "tokens=* delims=:" %%a IN ('IPCONFIG ^| FIND /I "ETHERNET ADAPTER"') DO (
 	SET adapterName=%%a
 	SET adapterName=!adapterName:~17!
 	SET adapterName=!adapterName:~0,-1!
-	netsh interface ipv4 set address name="!adapterName!" static %ip% %sub% %gate%
-	netsh interface ipv4 set dns     name="!adapterName!" static %dns% primary
+	netsh interface ipv4 set address name=!adapterName! static %ip% %sub% %gate%
+	netsh interface ipv4 set dns name="!adapterName!" static %defdns% primary
 ) || CALL :tee [-]Network settings could not be assigned
 EXIT /B 0
 :test
@@ -157,7 +160,7 @@ tracert www.google.com || CALL :tee [-]tracert www.google.com failed
 EXIT /B 0
 :update
 CONTROL UPDATE
-IPCONFIG /FLUSHDNS                     || CALL :tee "[-]flushdns failed"
+IPCONFIG /FLUSHDNS || CALL :tee "[-]flushdns failed"
 NET STOP wuauserv                      || CALL :tee [-]wuauserv net stop failed
 REG DELETE "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate" /v SusClientId /f
 WUAUCLT /resetauthorization /detectnow || CALL :tee [-]wuauclt.exe failure
