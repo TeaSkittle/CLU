@@ -24,7 +24,7 @@ Near the top of CLU.bat are variables that the user should change for the proper
 * `dest`    - Destination folder for downloads and logs
 * `down[]`  - Array of URL's for file to be downloaded
 * `apps[]`  - Install/run files downloaded from down[]
-* `step `   - Size of array ( used for looping through array )
+* `step`    - Size of array ( used for looping through array )
 
 #### Download and run ( as admin ):
 ```
