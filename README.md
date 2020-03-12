@@ -16,15 +16,15 @@ Quote from Tron Legacy:
 
 ### Instructions
 Near the top of CLU.bat are variables that the user should change for the proper automation:
-* defip   - default IP address ( this is just for display, not an actual address )
-* defsub  - default subnet mask
-* defgate - default gateway
-* defdns  - default dns ( this is set to google's 8.8.8.8 )
-* deftime - Default timezone ( used to force windows updates )
-* dest    - Destination folder for downloads and logs
-* down[]  - Array of URL's for file to be downloaded
-* apps[]  - Install/run files downloaded from down[]
-* step    - Size of array ( used for looping through array )
+* `defip`   - default IP address ( this is just for display, not an actual address )
+* `defsub`  - default subnet mask
+* `defgate` - default gateway
+* `defdns`  - default dns ( this is set to google's 8.8.8.8 )
+* `deftime` - Default timezone ( used to force windows updates )
+* `dest`    - Destination folder for downloads and logs
+* `down[]`  - Array of URL's for file to be downloaded
+* `apps[]`  - Install/run files downloaded from down[]
+* `step `   - Size of array ( used for looping through array )
 
 #### Download and run ( as admin ):
 ```
