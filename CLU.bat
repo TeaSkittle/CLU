@@ -13,6 +13,7 @@ SET defip=192.168.0.x
 SET defsub=255.255.255.0
 SET defgate=192.168.0.1
 SET defdns=8.8.8.8
+SET secdns=8.8.4.4
 SET deftime="Mountain Standard Time"
 SET dest=C:\CLU\
 SET step=3
@@ -140,15 +141,17 @@ SET /P sub="Subnet Mask[ %defsub% ]: "
 IF "%sub%"==""  (set sub=%defsub%)
 SET /P gate="Default Gateway[ %defgate% ]: "
 IF "%gate%"=="" (set gate=%defgate%)
-SET /P dns="DNS[ %defdns% ]: "
+SET /P dns="First DNS[ %defdns% ]: "
 IF "%dns%"==""  (set dns=%defdns%)
+SET /P dnstwo="Second DNS[ %defdns% ]: "
+IF "%dnstwo%"==""  (set dns=%secdns%)
 SET adapterName=
 FOR /F "tokens=* delims=:" %%a IN ('IPCONFIG ^| FIND /I "ETHERNET ADAPTER"') DO (
 	SET adapterName=%%a
 	SET adapterName=!adapterName:~17!
 	SET adapterName=!adapterName:~0,-1!
-	netsh interface ipv4 set address name=!adapterName! static %ip% %sub% %gate%
-	netsh interface ipv4 set dns name="!adapterName!" static %defdns% primary
+	netsh interface ipv4 add dns name="!adapterName!" addr=%defdns% index=1
+	netsh interface ipv4 add dns name="!adapterName!" addr=%secdns% index=2
 ) || CALL :tee [-]Network settings could not be assigned
 EXIT /B 0
 :test
