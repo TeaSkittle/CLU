@@ -141,9 +141,9 @@ SET /P sub="Subnet Mask[ %defsub% ]: "
 IF "%sub%"==""  (set sub=%defsub%)
 SET /P gate="Default Gateway[ %defgate% ]: "
 IF "%gate%"=="" (set gate=%defgate%)
-SET /P dns="First DNS[ %defdns% ]: "
+SET /P dns="Primary DNS[ %defdns% ]: "
 IF "%dns%"==""  (set dns=%defdns%)
-SET /P dnstwo="Second DNS[ %defdns% ]: "
+SET /P dnstwo="Secondary DNS[ %defdns% ]: "
 IF "%secdns%"==""  (set dns=%secdns%)
 SET adapterName=
 FOR /F "tokens=* delims=:" %%a IN ('IPCONFIG ^| FIND /I "ETHERNET ADAPTER"') DO (
