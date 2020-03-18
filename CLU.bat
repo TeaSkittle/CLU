@@ -144,7 +144,7 @@ IF "%gate%"=="" (set gate=%defgate%)
 SET /P dns="First DNS[ %defdns% ]: "
 IF "%dns%"==""  (set dns=%defdns%)
 SET /P dnstwo="Second DNS[ %defdns% ]: "
-IF "%dnstwo%"==""  (set dns=%secdns%)
+IF "%secdns%"==""  (set dns=%secdns%)
 SET adapterName=
 FOR /F "tokens=* delims=:" %%a IN ('IPCONFIG ^| FIND /I "ETHERNET ADAPTER"') DO (
 	SET adapterName=%%a
