@@ -143,15 +143,15 @@ SET /P gate="Default Gateway[ %defgate% ]: "
 IF "%gate%"=="" (set gate=%defgate%)
 SET /P dns="Primary DNS[ %defdns% ]: "
 IF "%dns%"==""  (set dns=%defdns%)
-SET /P dnstwo="Secondary DNS[ %defdns% ]: "
-IF "%secdns%"==""  (set dns=%secdns%)
+SET /P dnstwo="Secondary DNS[ %secdns% ]: "
+IF "%dnstwo%"==""  (set dnstwo=%secdns%)
 SET adapterName=
 FOR /F "tokens=* delims=:" %%a IN ('IPCONFIG ^| FIND /I "ETHERNET ADAPTER"') DO (
 	SET adapterName=%%a
 	SET adapterName=!adapterName:~17!
 	SET adapterName=!adapterName:~0,-1!
-	netsh interface ipv4 add dns name="!adapterName!" addr=%defdns% index=1
-	netsh interface ipv4 add dns name="!adapterName!" addr=%secdns% index=2
+	netsh interface ipv4 add dns name="!adapterName!" addr=%dns% index=1
+	netsh interface ipv4 add dns name="!adapterName!" addr=%dnstwo% index=2
 ) || CALL :tee [-]Network settings could not be assigned
 EXIT /B 0
 :test
