@@ -29,7 +29,7 @@ SET apps[2]=%dest%emacs-26.3-x86_64.zip
 :: Variables not to be changed
 ::
 COLOR 0F
-SET ver=1.3
+SET ver=1.4
 TITLE CLU - %ver%
 SET log=%dest%CLU_log.txt
 IF NOT EXIST %dest% MD %dest%
@@ -77,10 +77,8 @@ ECHO *        10. Delete temp files                                *
 ECHO *        11. Defrag C: drive                                  *
 ECHO *        12. Display system info                              *
 ECHO *        13. View runnings tasks                              *
-ECHO *                                                             *
-ECHO *  Notes/Logs:                                                *
 ECHO *        14. Open log file                                    *
-ECHO *        15. Delete Log(s)                                    *
+ECHO *        15. View Windows product key                         *
 ECHO *                                                             *
 ECHO ***************************************************************
 ECHO.
@@ -100,7 +98,7 @@ IF %option%==11 DEFRAG C: /U /V                   || CALL :tee [-]defrag C: erro
 IF %option%==12 SYSTEMINFO                        || CALL :tee [-]systeminfo error
 IF %option%==13 TASKLIST | MORE                   || CALL :tee [-]tasklist error
 IF %option%==14 NOTEPAD %log%                     || CALL :tee [-]Failed loading log
-IF %option%==15 DEL %log%                         && ECHO Deleting log file...
+IF %option%==15 wmic path softwarelicensingservice get OA3xOriginalProductKey
 COLOR 0A
 ECHO ***************************************
 ECHO *               COMPLETE              *
@@ -139,11 +137,11 @@ EXIT /B 0
 :network
 SET /P ip="IP address[ %defip% ]: "
 SET /P sub="Subnet Mask[ %defsub% ]: "
-IF "%sub%"=="" (set sub=%defsub%)
+IF "%sub%"==""  (set sub=%defsub%)
 SET /P gate="Default Gateway[ %defgate% ]: "
 IF "%gate%"=="" (set gate=%defgate%)
 SET /P dns="DNS[ %defdns% ]: "
-IF "%dns%"=="" (set dns=%defdns%)
+IF "%dns%"==""  (set dns=%defdns%)
 SET adapterName=
 FOR /F "tokens=* delims=:" %%a IN ('IPCONFIG ^| FIND /I "ETHERNET ADAPTER"') DO (
 	SET adapterName=%%a
