@@ -80,6 +80,7 @@ ECHO *        12. Display system info                              *
 ECHO *        13. View runnings tasks                              *
 ECHO *        14. Open log file                                    *
 ECHO *        15. View Windows product key                         *
+ECHO *        16. View DNS host file                               *
 ECHO *                                                             *
 ECHO ***************************************************************
 ECHO.
@@ -100,6 +101,7 @@ IF %option%==12 SYSTEMINFO                        || CALL :tee [-]systeminfo err
 IF %option%==13 TASKLIST | MORE                   || CALL :tee [-]tasklist error
 IF %option%==14 NOTEPAD %log%                     || CALL :tee [-]Failed loading log
 IF %option%==15 wmic path softwarelicensingservice get OA3xOriginalProductKey
+IF %option%==16 type C:\Windows\System32\drivers\etc\hosts
 COLOR 0A
 ECHO ***************************************
 ECHO *               COMPLETE              *
