@@ -157,21 +157,26 @@ ping www.google.com    || CALL :tee [-]ping www.google.com failed
 tracert www.google.com || CALL :tee [-]tracert www.google.com failed
 EXIT /B 0
 :update
-CONTROL UPDATE
-IPCONFIG /FLUSHDNS || CALL :tee "[-]flushdns failed"
-NET STOP wuauserv                      || CALL :tee [-]wuauserv net stop failed
+NET STOP wuauserv
 REG DELETE "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate" /v SusClientId /f
-WUAUCLT /resetauthorization /detectnow || CALL :tee [-]wuauclt.exe failure
-GPUPDATE /force /wait:10               || CALL :tee [-]Group Policy timed out
-SC CONFIG WUAUSERV start=auto          || CALL :tee [-]wuauserv service start=auto failed
-SC CONFIG W32TIME  start=auto          || CALL :tee [-]W32Time service start=auto failed
-SC CONFIG BITS     start=auto          || CALL :tee [-]BITS service start=auto failed
-SC CONFIG CRYPTSVC start=auto          || CALL :tee [-]CryptSvc service start=auto failed
-NET STOP W32TIME                       || CALL :tee [-]W32Time net stop failed
-TZUTIL /S %deftime%                    || CALL :tee [-]Could not assign proper timezone
-NET START W32TIME                      || CALL :tee [-]W32Time net start failed
-W32TM /RESYNC /REDISCOVER              || CALL :tee [-]Could not sync to w32tm
-USOCLIENT StartInteractiveScan         || CALL :tee [-]Could not start UsoClient.exe for windows updates
+WUAUCLT /resetauthorization /detectnow
+GPUPDATE /force /wait:10
+SC CONFIG WUAUSERV start=auto
+SC CONFIG W32TIME  start=auto
+SC CONFIG BITS     start=auto
+SC CONFIG CRYPTSVC start=auto
+net start wuauserv
+net start W32Time
+net start msiserver
+net start BITS
+net start CryptSvc
+NET STOP W32TIME
+TZUTIL /S %deftime%
+NET START W32TIME
+W32TM /RESYNC /REDISCOVER
+wuauclt /detectnow
+USOCLIENT.EXE StartInteractiveScan
+CONTROL UPDATE
 EXIT /B 0
 ::
 :: Logging Functions
