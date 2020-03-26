@@ -136,6 +136,8 @@ SFC /SCANNOW              || CALL :tee [-]SFC Error
 DEFRAG C: /A /V           || CALL :tee [-]DEFRAG /A Error
 EXIT /B 0
 :network
+netsh interface ipv4 show config
+SET /P adapterName="Interface name: "
 SET /P ip="IP address[ %defip% ]: "
 SET /P sub="Subnet Mask[ %defsub% ]: "
 IF "%sub%"==""  (set sub=%defsub%)
@@ -144,15 +146,10 @@ IF "%gate%"=="" (set gate=%defgate%)
 SET /P dns="Primary DNS[ %defdns% ]: "
 IF "%dns%"==""  (set dns=%defdns%)
 SET /P dnstwo="Secondary DNS[ %secdns% ]: "
-IF "%dnstwo%"==""  (set dnstwo=%secdns%)
-SET adapterName=
-FOR /F "tokens=* delims=:" %%a IN ('IPCONFIG ^| FIND /I "ETHERNET ADAPTER"') DO (
-	SET adapterName=%%a
-	SET adapterName=!adapterName:~17!
-	SET adapterName=!adapterName:~0,-1!
-	netsh interface ipv4 add dns name="!adapterName!" addr=%dns% index=1
-	netsh interface ipv4 add dns name="!adapterName!" addr=%dnstwo% index=2
-) || CALL :tee [-]Network settings could not be assigned
+IF "%dnstwo%"==""  (set dnstwo=%secdns%)=
+netsh interface ipv4 set address name="!adapterName!" static %ip% %sub% %gate%	|| CALL :tee [-]IP settings could not be changed
+netsh interface ipv4 set dns name="!adapterName!" static %dns% primary 		|| CALL :tee [-]DNS settings could not be changed
+netsh interface ipv4 add dns name="!adapterName!" addr=%dnstwo% index=2 	|| CALL :tee [-]DNS settings could not be changed
 EXIT /B 0
 :test
 nslookup 192.168.10.5  || CALL :tee [-]nslookup failed
