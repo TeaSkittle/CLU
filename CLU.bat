@@ -161,26 +161,23 @@ ping www.google.com    || CALL :tee [-]ping www.google.com failed
 tracert www.google.com || CALL :tee [-]tracert www.google.com failed
 EXIT /B 0
 :update
+CONTROL UPDATE
 NET STOP wuauserv
-REG DELETE "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate" /v SusClientId /f
-WUAUCLT /resetauthorization /detectnow
-GPUPDATE /force /wait:10
-SC CONFIG WUAUSERV start=auto
-SC CONFIG W32TIME  start=auto
-SC CONFIG BITS     start=auto
-SC CONFIG CRYPTSVC start=auto
-net start wuauserv
-net start W32Time
-net start msiserver
-net start BITS
-net start CryptSvc
 NET STOP W32TIME
+REG DELETE "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate" /v SusClientId /f
+SC CONFIG WUAUSERV  start=auto
+SC CONFIG W32TIME   start=auto
+SC CONFIG BITS      start=auto
+SC CONFIG CRYPTSVC  start=auto
+NET START wuauserv
+NET START W32Time
+NET START msiserver
+NET START BITS
+NET START CryptSvc
 TZUTIL /S %deftime%
 NET START W32TIME
 W32TM /RESYNC /REDISCOVER
-wuauclt /detectnow
 USOCLIENT.EXE StartInteractiveScan
-CONTROL UPDATE
 EXIT /B 0
 :remove_updates
 wmic qfe get hotfixid >> %dest%temp1
