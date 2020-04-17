@@ -81,6 +81,7 @@ ECHO *        13. View runnings tasks                              *
 ECHO *        14. Open log file                                    *
 ECHO *        15. View Windows product key                         *
 ECHO *        16. View DNS hosts file                              *
+ECHO *        17. Remove all previous windows updates              *
 ECHO *                                                             *
 ECHO ***************************************************************
 ECHO.
@@ -102,6 +103,7 @@ IF %option%==13 TASKLIST | MORE                   || CALL :tee [-]tasklist error
 IF %option%==14 NOTEPAD %log%                     || CALL :tee [-]Failed loading log
 IF %option%==15 wmic path softwarelicensingservice get OA3xOriginalProductKey
 IF %option%==16 type C:\Windows\System32\drivers\etc\hosts
+IF %option%==17 call :remove_updates
 COLOR 0A
 ECHO ***************************************
 ECHO *               COMPLETE              *
@@ -180,6 +182,22 @@ wuauclt /detectnow
 USOCLIENT.EXE StartInteractiveScan
 CONTROL UPDATE
 EXIT /B 0
+:remove_updates
+wmic qfe get hotfixid >> %dest%temp1
+for /f %%i in ('type %dest%temp1') do ( 
+	echo wusa /uninstall /%%i /quiet /norestart >> %dest%temp
+)
+for /f "delims=" %%a in (%dest%temp) do (
+    SET s=%%a
+    SET s=!s:KB=KB:!
+    echo !s! >> %dest%temp2
+)
+echo @echo off > %dest%run.bat
+powershell Get-Content %dest%temp2 -Tail 6 >> %dest%run.bat
+echo EXIT /B 0 >> %dest%run.bat
+del %dest%tem*
+EXIT /B 0
+C:\1\run.bat
 ::
 :: Logging Functions
 ::
