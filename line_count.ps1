@@ -1,3 +1,3 @@
-$lines=(Get-Content C:\1\temp2 | Measure-Object -Line).Lines
+$lines=(Get-Content C:\CLU\temp2 | Measure-Object -Line).Lines
 $lines--
-type C:\1\temp2 -Tail $lines | Out-File C:\1\temp3 -encoding ASCII
+type C:\CLU\temp2 -Tail $lines | Out-File C:\CLU\temp3 -encoding ASCII
