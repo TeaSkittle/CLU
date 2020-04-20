@@ -189,12 +189,13 @@ for /f "delims=" %%a in (%dest%temp) do (
     SET s=!s:KB=KB:!
     echo !s! >> %dest%temp2
 )
-echo @echo off > %dest%run.bat
-powershell Get-Content %dest%temp2 -Tail 6 >> %dest%run.bat
-echo EXIT /B 0 >> %dest%run.bat
+echo @echo off > %dest%remove_updates.bat
+PowerShell -NoProfile -ExecutionPolicy Bypass -Command line_count.ps1
+type %dest%temp3 >> %dest%remove_updates.bat
+echo EXIT /B 0 >> %dest%remove_updates.bat
 del %dest%tem*
 EXIT /B 0
-C:\1\run.bat
+%dest%remove_updates.bat
 ::
 :: Logging Functions
 ::
