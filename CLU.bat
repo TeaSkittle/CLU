@@ -82,6 +82,7 @@ ECHO *        14. Open log file                                    *
 ECHO *        15. View Windows product key                         *
 ECHO *        16. View DNS hosts file                              *
 ECHO *        17. Remove all previous windows updates              *
+ECHO *        18. Disable firewall                                 *
 ECHO *                                                             *
 ECHO ***************************************************************
 ECHO.
@@ -104,6 +105,7 @@ IF %option%==14 NOTEPAD %log%                     || CALL :tee [-]Failed loading
 IF %option%==15 wmic path softwarelicensingservice get OA3xOriginalProductKey
 IF %option%==16 type C:\Windows\System32\drivers\etc\hosts
 IF %option%==17 call :remove_updates
+IF %option%==18 call :firewall
 COLOR 0A
 ECHO ***************************************
 ECHO *               COMPLETE              *
@@ -196,6 +198,13 @@ echo EXIT /B 0 >> %dest%remove_updates.bat
 del %dest%tem*
 EXIT /B 0
 %dest%remove_updates.bat
+:firewall
+netsh advfirewall set allprofiles    state off
+netsh advfirewall set currentprofile state off
+netsh advfirewall set domainprofile  state off
+netsh advfirewall set privateprofile state off
+netsh advfirewall set publicprofile  state off
+EXIT /B 0
 ::
 :: Logging Functions
 ::
