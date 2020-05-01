@@ -17,6 +17,10 @@ $defgate=192.168.0.1
 $dnsone=8.8.8.8
 $dnstwo=8.8.4.4
 
+# Proxy
+$proxyserver="blank"
+$proxylist="192.168.*;<local>"
+
 # Time zone
 $deftime="Mountain Standard Time"
 
