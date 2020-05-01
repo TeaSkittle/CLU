@@ -1,8 +1,5 @@
 # Force windows updates
 
-# NOTE: Will get from var.ps1 in the future
-$deftime="Mountain Standard Time"
-
 # Open windows update panel
 CONTROL UPDATE
 
