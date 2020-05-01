@@ -4,6 +4,7 @@
 # run with the "dot" operator: . .\var.ps1
 
 # Title bar
+# NOTE: complete ps version will be 2.0
 $ver=1.6
 $title="CLU - $ver"
 $host.ui.RawUI.WindowTitle = “$title”
