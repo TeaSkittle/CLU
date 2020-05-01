@@ -11,7 +11,7 @@ $host.ui.RawUI.WindowTitle = “$title”
 # Network
 $defint="Ethernet"
 $defsub=255.255.255.0
-$defgate=192.168.9.1
+$defgate=192.168.0.1
 
 # DNS
 $dnsone=8.8.8.8
