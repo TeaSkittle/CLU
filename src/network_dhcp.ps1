@@ -1,8 +1,5 @@
 # Set network settings for DHCP
 
-# Default variables
-# NOTE: will get from var.ps1 in the future
-
 # Get user input
 ipconfig /all
 $interface = Read-Host "Interface"
