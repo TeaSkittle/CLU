@@ -1,5 +1,3 @@
-#Requires -RunAsAdministrator
-# NOTE: Put this ^ at the top of .ps1 files
 # Holds global variables for other scripts
 # run with the "dot" operator: . .\var.ps1
 
