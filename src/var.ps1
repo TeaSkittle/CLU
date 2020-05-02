@@ -5,7 +5,7 @@
 # NOTE: complete ps version will be 2.0
 $ver=1.6
 $title="CLU - $ver"
-$host.ui.RawUI.WindowTitle = “$title”
+$host.ui.RawUI.WindowTitle = "$title"
 
 # Network
 $defint="Ethernet"
@@ -24,12 +24,8 @@ $proxylist="192.168.*;<local>"
 $deftime="Mountain Standard Time"
 
 # Files
-$dest=C:\CLU\
+$dest="C:\CLU\"
 
 # Color Scheme
 $bg="black"
 $fg="white"
-# TO change run these:
-# $host.UI.RawUI.BackgroundColor = "$bg"
-# $host.UI.RawUI.ForegroundColor = "$fg"
-# clear

@@ -13,3 +13,8 @@ Set-ExecutionPolicy RemoteSigned
 
 # Load global variables
 . .\var.ps1
+
+# Set color scheme
+$host.UI.RawUI.BackgroundColor = "$bg"
+$host.UI.RawUI.ForegroundColor = "$fg"
+clear

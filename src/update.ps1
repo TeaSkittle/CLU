@@ -11,10 +11,10 @@ NET STOP W32TIME
 REG DELETE "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate" /v SusClientId /f
 
 # Start/Stop services
-SC CONFIG WUAUSERV  start=auto
-SC CONFIG W32TIME   start=auto
-SC CONFIG BITS      start=auto
-SC CONFIG CRYPTSVC  start=auto
+SC.exe CONFIG WUAUSERV  start=auto
+SC.exe CONFIG W32TIME   start=auto
+SC.exe CONFIG BITS      start=auto
+SC.exe CONFIG CRYPTSVC  start=auto
 NET START wuauserv
 NET START W32Time
 NET START msiserver
