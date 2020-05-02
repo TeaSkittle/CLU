@@ -1,3 +1,5 @@
+
+#Requires -RunAsAdministrator
 # ==================================================================================
 # Author - Travis Dowd
 # Date Started: 2-7-2020 (v0.1)
@@ -6,6 +8,9 @@
 #
 # Most recent veriosn is always at: https://github.com/TeaSkittle/CLU
 # ==================================================================================
+
+# Allow scripts to be ran
+Set-ExecutionPolicy RemoteSigned
 
 # Load global variables
 . .\var.ps1
