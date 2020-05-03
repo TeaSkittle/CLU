@@ -1,3 +1,9 @@
+#Requires -RunAsAdministrator
+Set-ExecutionPolicy RemoteSigned
+
+# Load global variables
+. .\var.ps1
+
 # Set correct proxy settings
 
 # Registry
