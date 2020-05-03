@@ -1,3 +1,6 @@
+#Requires -RunAsAdministrator
+Set-ExecutionPolicy RemoteSigned
+
 # Force windows updates
 
 # Open windows update panel
