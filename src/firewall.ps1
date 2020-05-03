@@ -1,3 +1,6 @@
+#Requires -RunAsAdministrator
+Set-ExecutionPolicy RemoteSigned
+
 # Turn off firewall for all profiles
 netsh advfirewall set allprofiles    state off
 netsh advfirewall set currentprofile state off
