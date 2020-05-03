@@ -1,3 +1,6 @@
+#Requires -RunAsAdministrator
+Set-ExecutionPolicy RemoteSigned
+
 # Holds global variables for other scripts
 # run with the "dot" operator: . .\var.ps1
 
