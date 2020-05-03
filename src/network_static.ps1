@@ -1,3 +1,9 @@
+#Requires -RunAsAdministrator
+Set-ExecutionPolicy RemoteSigned
+
+# Load global variables
+. .\var.ps1
+
 # Set network settings for static
 
 # Get user input
