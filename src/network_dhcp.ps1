@@ -1,3 +1,6 @@
+#Requires -RunAsAdministrator
+Set-ExecutionPolicy RemoteSigned
+
 # Set network settings for DHCP
 
 # Get user input
