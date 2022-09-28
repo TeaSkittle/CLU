@@ -84,6 +84,9 @@ ECHO *        16. View DNS hosts file                              *
 ECHO *        17. Remove all previous windows updates              *
 ECHO *        18. Disable firewall                                 *
 ECHO *                                                             *
+ECHO *  Other:                                                     *
+ECHO *        19. Configure secondar NIC for router setups         *
+ECHO *                                                             *
 ECHO ***************************************************************
 ECHO.
 SET /P option="Option -> "
@@ -106,6 +109,7 @@ IF %option%==15 wmic path softwarelicensingservice get OA3xOriginalProductKey
 IF %option%==16 type C:\Windows\System32\drivers\etc\hosts
 IF %option%==17 call :remove_updates
 IF %option%==18 call :firewall
+IF %option%==19 call :nic
 COLOR 0A
 ECHO ***************************************
 ECHO *               COMPLETE              *
@@ -204,6 +208,19 @@ netsh advfirewall set currentprofile state off
 netsh advfirewall set domainprofile  state off
 netsh advfirewall set privateprofile state off
 netsh advfirewall set publicprofile  state off
+EXIT /B 0
+:nic
+netsh int ipv4 show interfaces
+SET /p Adapter=Please enter network adapter name:
+netsh interface ipv4 set address "%Adapter%" static 192.168.0.100 255.255.255.0
+netsh interface ipv4 add address "%Adapter%" 192.168.0.100 255.255.255.0
+netsh interface ipv4 add address "%Adapter%" 192.168.1.100 255.255.255.0
+netsh interface ipv4 add address "%Adapter%" 192.168.2.100 255.255.255.0
+netsh interface ipv4 add address "%Adapter%" 192.168.3.100 255.255.255.0
+netsh interface ipv4 add address "%Adapter%" 192.168.4.100 255.255.255.0
+netsh interface ipv4 add address "%Adapter%" 192.168.8.100 255.255.255.0
+netsh interface ipv4 add address "%Adapter%" 192.168.11.100 255.255.255.0
+netsh interface ipv4 add address "%Adapter%" 192.168.88.20 255.255.255.0
 EXIT /B 0
 ::
 :: Logging Functions
