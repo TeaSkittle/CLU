@@ -30,7 +30,7 @@ SET apps[2]=%dest%emacs-26.3-x86_64.zip
 :: Variables not to be changed
 ::
 COLOR 0F
-SET ver=1.4
+SET ver=1.5
 TITLE CLU - %ver%
 SET log=%dest%CLU_log.txt
 IF NOT EXIST %dest% MD %dest%
