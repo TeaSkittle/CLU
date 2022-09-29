@@ -85,7 +85,7 @@ ECHO *        17. Remove all previous windows updates              *
 ECHO *        18. Disable firewall                                 *
 ECHO *                                                             *
 ECHO *  Other:                                                     *
-ECHO *        19. Configure secondar NIC for router setups         *
+ECHO *        19. Configure secondary NIC for router setups        *
 ECHO *                                                             *
 ECHO ***************************************************************
 ECHO.
