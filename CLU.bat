@@ -62,7 +62,7 @@ ECHO *        0.  Exit and stop this script                        *
 ECHO *        1.  Restart device                                   *
 ECHO *                                                             *
 ECHO *  Setup:                                                     *
-ECHO *        2.  Force WSUS Updates                               *
+ECHO *        2.  Force Windows Updates                            *
 ECHO *        3.  Change device's name                             *
 ECHO *        4.  Download files                                   *
 ECHO *        5.  Install apps                                     *
@@ -84,7 +84,7 @@ ECHO *        16. View DNS hosts file                              *
 ECHO *        17. Remove all previous windows updates              *
 ECHO *        18. Disable firewall                                 *
 ECHO *                                                             *
-ECHO *  Other:                                                     *
+ECHO *  Miscellaneous:                                             *
 ECHO *        19. Configure secondary NIC for router setups        *
 ECHO *                                                             *
 ECHO ***************************************************************
@@ -162,9 +162,9 @@ netsh interface ipv4 set dns name="!adapterName!" static %dns% primary 		|| CALL
 netsh interface ipv4 add dns name="!adapterName!" addr=%dnstwo% index=2 	|| CALL :tee [-]DNS settings could not be changed
 EXIT /B 0
 :test
-nslookup 192.168.10.5  || CALL :tee [-]nslookup failed
-ping www.google.com    || CALL :tee [-]ping www.google.com failed
-tracert www.google.com || CALL :tee [-]tracert www.google.com failed
+nslookup www.google.com || CALL :tee [-]nslookup failed
+ping www.google.com     || CALL :tee [-]ping www.google.com failed
+tracert www.google.com  || CALL :tee [-]tracert www.google.com failed
 EXIT /B 0
 :update
 CONTROL UPDATE
